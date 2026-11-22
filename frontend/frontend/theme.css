@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Field Shift — "sunny casual farm" theme (loaded last; visual layer only)
+   Rounded playful type, glossy candy buttons, soft shadows, animated progress.
+   ========================================================================== */
+:root{
+  --orch:#e8552f;--orch-d:#b8401c;--jean:#2f9bd6;--jean-d:#1f78ab;--apple:#6cc04a;--apple-l:#9be070;--apple-d:#4a9e2f;
+  --core:#ffe9a8;--bg:#f3fbe9;--card:#fffdf4;--line:#f0d9a0;--line2:#e6c27e;--ink:#3a2a18;--mute:#7a6248;
+  --sun:#ffc83a;--sun-d:#e89a00;--wood:#c98a4b;--wood-d:#9a5b2e;--sky:#45b8f0;--grass:#6cc04a;--grass-d:#3f9a2a;
+  --r:22px;--shadow:0 6px 0 rgba(150,95,30,.18),0 14px 26px -12px rgba(90,60,20,.35);
+  --font-fun:"Baloo Bhaijaan 2","Cairo",system-ui,sans-serif;
+}
+html,body{background:#bfe8ff}
+body{font-family:var(--font-fun);
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 12%,rgba(255,255,255,.75),transparent 70%),
+    radial-gradient(ellipse 40% 26% at 85% 22%,rgba(255,255,255,.6),transparent 70%),
+    linear-gradient(180deg,#5cc4f5 0%,#bfe8ff 45%,#9be070 72%,#6cc04a 100%) fixed}
+#app{background:linear-gradient(180deg,#e9f8ff 0%,#f6fdea 40%,#fffbea 100%);font-family:var(--font-fun)}
+@media (min-width:440px){#app{box-shadow:0 0 0 6px #fffdf4,0 0 0 10px #c98a4b,0 30px 60px -20px rgba(60,40,10,.45)}}
+h1,h2,.x3title b,.htx b,.bigscore,.primary,.secondary,.x3go,.chip,.opt b,.node b{font-family:var(--font-fun);letter-spacing:.1px}
+h1,h2{color:#3a2a18;text-shadow:0 2px 0 rgba(255,255,255,.9)}
+
+/* ---------- candy buttons ---------- */
+.primary,.x3go{position:relative;overflow:hidden;border:0;border-radius:22px;color:#fff;font-weight:800;
+  background:linear-gradient(180deg,#8fdc5a 0%,#5cbf3f 48%,#45a82c 100%);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.12),0 6px 0 #2f7d1c,0 14px 22px -10px rgba(47,125,28,.6);
+  text-shadow:0 2px 0 rgba(0,0,0,.18)}
+.primary::before,.x3go::before{content:"";position:absolute;left:10%;right:10%;top:4px;height:42%;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
+.primary:hover:not([disabled]),.x3go:hover:not([disabled]){filter:brightness(1.06);transform:translateY(-1px)}
+.primary:active:not([disabled]),.x3go:active:not([disabled]){transform:translateY(4px) scale(.98);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 2px 0 #2f7d1c}
+.primary svg path,.x3go svg path{stroke:#fff}
+.primary[disabled],.x3go:disabled{background:linear-gradient(180deg,#f3e6c4,#e9d6a6);color:#9a8160;text-shadow:none;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #d8bd84}
+.primary[disabled]::before{opacity:.5}
+.x3go.alt,.secondary{background:linear-gradient(180deg,#7fd2fb 0%,#3fb0ec 50%,#2a96d6 100%);color:#fff;border:0;border-radius:22px;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.1),0 5px 0 #1a6fa3,0 12px 20px -10px rgba(26,111,163,.55);text-shadow:0 2px 0 rgba(0,0,0,.15);position:relative;overflow:hidden}
+.secondary::before{content:"";position:absolute;left:10%;right:10%;top:4px;height:40%;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0));pointer-events:none}
+.secondary:active{transform:translateY(3px);box-shadow:0 2px 0 #1a6fa3}
+.go{background:radial-gradient(circle at 35% 30%,#ffd76a,#ffb21c 55%,#e88a00)!important;box-shadow:inset 0 3px 0 rgba(255,255,255,.6),0 7px 0 #b86a00,0 0 0 8px rgba(255,200,58,.35)!important}
+.back,.iconbtn,.x3b{border:0!important;border-radius:16px!important;background:linear-gradient(180deg,#fffef8,#fff1cf)!important;box-shadow:inset 0 2px 0 #fff,0 4px 0 #e6c27e,0 8px 14px -8px rgba(90,60,20,.4)!important}
+.x3tea{background:linear-gradient(180deg,#ffb36b,#ff7a45 55%,#e8552f)!important;color:#fff!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #b8401c,0 0 0 0 rgba(255,122,69,.5)!important}
+
+/* ---------- cards & panels ---------- */
+.card,.panel2,.opt,.node,.kpi,.ccard,.histrow,.orow,.stepper,.farmbtn,.farmrow,.riskcard,.x3dock,.x3data,.dock .say,.bubble,.result,.rdet,.cover{
+  border-radius:var(--r)!important;border:2px solid #f6e3b4!important;background:linear-gradient(180deg,#fffef9,#fff8e4)!important;box-shadow:var(--shadow)}
+.opt.on,.node.next,.ccard.picked,.farmrow.on{border:3px solid #ffb21c!important;box-shadow:0 0 0 4px rgba(255,200,58,.35),var(--shadow)!important}
+.opt .rad{border-color:#e6c27e}.opt.on .rad{background:#ff8a3d;border-color:#ff8a3d}
+.riskov,.overlay{background:rgba(24,86,128,.35)!important;backdrop-filter:blur(3px)}
+.riskcard{border-radius:30px 30px 0 0!important}
+.field{border:3px solid #9be070;border-radius:18px;background:#fffef9;box-shadow:inset 0 3px 0 rgba(0,0,0,.04)}
+.field:focus{border-color:#ffb21c;box-shadow:0 0 0 4px rgba(255,200,58,.35)}
+
+/* ---------- chips & tags ---------- */
+.chip,.x3chip,.x3tool2,.x3crop,.x3slot,.x3in,.x3evb,.x3cyc,.x3tool,.tool,.x3choice{border-radius:18px!important;border:2px solid #f0d9a0!important;background:linear-gradient(180deg,#fffef8,#fff3d4)!important;box-shadow:inset 0 2px 0 #fff,0 3px 0 #e6c27e;color:#3a2a18}
+.chip.on,.x3chip.on,.x3in.on,.x3tool.on,.tool.on{background:linear-gradient(180deg,#ffd76a,#ffb21c)!important;border-color:#e89a00!important;color:#4a2a00!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #c97f00!important}
+.x3tool2.on,.x3crop.on,.x3slot.on,.x3evb.on{border-color:#ff8a3d!important;box-shadow:0 0 0 3px rgba(255,138,61,.3),0 3px 0 #e6c27e!important}
+.badge,.tag,.sig,.obs,.hyp,.envbadge,.x3tag,.kindtag,.rlvl{border-radius:999px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.b-ok,.rl-low{background:linear-gradient(180deg,#d9f7c4,#b9ec96)!important;color:#2a6b13!important}
+.b-adj,.rl-moderate{background:linear-gradient(180deg,#fff2c2,#ffe08a)!important;color:#8a5500!important}
+.b-high,.rl-high{background:linear-gradient(180deg,#ffd6cf,#ffb3a6)!important;color:#a3271a!important}
+
+/* ---------- hub ---------- */
+.hubc{border-radius:26px!important;overflow:hidden}
+.hubc::after{content:"";position:absolute;left:8%;right:8%;top:6px;height:38%;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0));pointer-events:none}
+.hubc.c-nasa{background:linear-gradient(160deg,#7fd2fb,#2f9bd6 60%,#1f78ab)!important;box-shadow:0 7px 0 #175f88,0 16px 26px -12px rgba(23,95,136,.6)!important}
+.hubc.c-crop{background:linear-gradient(160deg,#a6e86e,#5cbf3f 60%,#3f9a2a)!important;box-shadow:0 7px 0 #2f7d1c,0 16px 26px -12px rgba(47,125,28,.6)!important}
+.hubc.c-game{background:linear-gradient(160deg,#ffd76a,#ff9a3d 55%,#e8552f)!important;box-shadow:0 7px 0 #b8401c,0 16px 26px -12px rgba(184,64,28,.6)!important}
+.hico{background:rgba(255,255,255,.28)!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 10px -4px rgba(0,0,0,.25)!important}
+.farmchips span{border:0!important;background:linear-gradient(180deg,#fffef8,#fff0c8)!important;box-shadow:0 3px 0 #e6c27e;color:#7a4a12!important}
+
+/* ---------- animated progress ---------- */
+.progress,.pbar,.x3prog,.timer-track{background:#fbe9bf!important;border-radius:999px!important;box-shadow:inset 0 2px 3px rgba(120,80,20,.2)}
+.progress i,.pbar i,.x3prog i,.timer-fill{border-radius:999px!important;
+  background:repeating-linear-gradient(-45deg,#8fdc5a 0 10px,#6cc04a 10px 20px)!important;background-size:28px 28px!important;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.5);animation:fsStripes 1s linear infinite}
+@keyframes fsStripes{to{background-position:28px 0}}
+.dots i.on{background:linear-gradient(90deg,#ffb21c,#ff7a45)!important}
+.stars span{color:#ffb21c!important;text-shadow:0 2px 0 #c97f00}
+.stars .off{color:#f0d9a0!important;text-shadow:none}
+.starrow svg path{filter:drop-shadow(0 3px 0 rgba(201,127,0,.6))}
+.bigscore{color:#ff7a45!important;text-shadow:0 4px 0 #e6c27e,0 0 18px rgba(255,200,58,.6)}
+.node .num{background:linear-gradient(180deg,#7fd2fb,#2f9bd6)!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #1a6fa3}
+.node.done .num{background:linear-gradient(180deg,#8fdc5a,#4a9e2f)!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #2f7d1c}
+.node.locked .num{background:linear-gradient(180deg,#e9d6a6,#cdb47d)!important}
+.chap{color:#9a5b2e!important}.chap::after{background:repeating-linear-gradient(90deg,#e59a52 0 10px,transparent 10px 16px)!important;height:4px!important;border-radius:4px}
+
+/* ---------- 3D game overlay ---------- */
+.x3title,.x3goal,.x3mission{border-radius:18px!important}
+.x3title{background:linear-gradient(180deg,#fffef8,#fff1cf)!important;box-shadow:inset 0 2px 0 #fff,0 4px 0 #e6c27e!important}
+.x3title small{color:#e8552f!important}
+.x3goal,.x3mission{background:linear-gradient(180deg,rgba(255,178,28,.95),rgba(255,138,61,.95))!important;color:#fff!important;text-shadow:0 1px 0 rgba(0,0,0,.18);box-shadow:0 4px 0 #c97f00!important}
+.x3mi .ck{border-color:#fff!important}.x3mi.ok .ck{background:#6cc04a!important;border-color:#6cc04a!important}
+.x3bub{border-radius:22px!important;border:3px solid #fff!important;box-shadow:0 8px 0 rgba(150,95,30,.15),0 16px 26px -10px rgba(90,60,20,.4)!important}
+.x3vign{background:radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(255,200,58,.18) 100%)!important}
+.x3combo{color:#fff!important;-webkit-text-stroke:3px #ff7a45!important;text-shadow:0 6px 0 #e8552f!important}
+.x3stat{border-radius:16px!important;background:linear-gradient(180deg,#fffef8,#fff1cf)!important;box-shadow:0 3px 0 #e6c27e}
+.x3stat.good{background:linear-gradient(180deg,#e2f9d0,#c4ef9e)!important}.x3stat.warn{background:linear-gradient(180deg,#fff2c2,#ffe08a)!important}.x3stat.bad{background:linear-gradient(180deg,#ffe2dc,#ffc2b8)!important}
+.x3cam button,.rot3 button{border-radius:16px!important;background:linear-gradient(180deg,#fffef8,#fff1cf)!important;box-shadow:inset 0 2px 0 #fff,0 4px 0 #e6c27e!important;color:#2f9bd6!important}
+
+/* ---------- small life ---------- */
+.fs-salah{filter:drop-shadow(0 6px 4px rgba(90,60,20,.25))}
+.hubc:hover .hico,.ccard:hover .art{animation:fsJiggle .5s ease}
+@keyframes fsJiggle{30%{transform:rotate(-6deg) scale(1.06)}60%{transform:rotate(5deg)}}
+.primary:not([disabled]).pop{animation:fsPop .5s cubic-bezier(.3,1.5,.5,1) backwards,fsGlow 2.4s ease-in-out .6s infinite}
+@keyframes fsGlow{50%{box-shadow:inset 0 2px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.12),0 6px 0 #2f7d1c,0 0 0 6px rgba(108,192,74,.25)}}
+@media (prefers-reduced-motion:reduce){.progress i,.pbar i,.x3prog i,.timer-fill,.primary.pop{animation:none!important}}
+
+/* welcome splash: fill the phone even when #app only has min-height */
+.welcome{min-height:100vh;min-height:100dvh}
+@media (min-width:440px){.welcome{min-height:100%}}

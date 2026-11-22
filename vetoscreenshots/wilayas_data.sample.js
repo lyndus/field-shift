@@ -1,0 +1,1 @@
+window.FS_WILAYA_DATA = { version: "1.0", wilayas: { "16": { name: "Alger", rain_mean: 620, years: 30 } } };

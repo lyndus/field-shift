@@ -1,0 +1,30 @@
+/* dynamic NASA environment: loading screen, farm switcher, data badges */
+.envload{gap:12px}
+.sat-scene{position:relative;height:170px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#516d77,#8fb3c2 60%,#dfe7e9)}
+.sat-orbit{transform-origin:170px 300px;animation:satOrbit 6s linear infinite}
+@keyframes satOrbit{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+.beam{animation:beamPulse 1.6s ease-in-out infinite;transform-origin:170px 60px}
+@keyframes beamPulse{0%,100%{opacity:.25}50%{opacity:.85}}
+.sat-salah{position:absolute;bottom:2px;inset-inline-start:8px}
+.envsteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.envsteps li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:#6b706a;transition:color .3s}
+.envsteps .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #c9c99a;display:grid;place-items:center;transition:all .3s}
+.envsteps li.cur{color:#2b2a20}.envsteps li.cur .dot{border-color:#840000;border-top-color:transparent;animation:spin .8s linear infinite}
+.envsteps li.done{color:#3c5a14}.envsteps li.done .dot{background:#9ca047;border-color:#9ca047}
+.envsteps li.done .dot::after{content:"✓";color:#fbfbef;font-size:12px;font-weight:900}
+@keyframes spin{to{transform:rotate(360deg)}}
+.envok{background:#eef3d6;border:2px solid #9ca047;border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.envkpis{display:flex;gap:6px}.envkpis span{flex:1;background:#fbfbef;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column}
+.envkpis small{font-size:11px;font-weight:800;color:#516d77}.envkpis b{font-size:15px}
+.envwarn{background:#fdf1d6;border:2px solid #e8cf8a;border-radius:16px;padding:10px 12px;font-size:14px;font-weight:700;line-height:1.5}
+.farmbar{display:flex;flex-direction:column;gap:6px}
+.farmbtn{display:flex;align-items:center;gap:8px;width:100%;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:8px 12px;font-size:15px;min-height:46px;text-align:start}
+.farmbtn b{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.envbadge{display:inline-block;font-size:11.5px;font-weight:800;border-radius:999px;padding:3px 10px;line-height:1.4}
+.envbadge.live{background:#e2ecf1;color:#2f5884}.envbadge.warn{background:#fdf1d6;color:#7a5307}
+.farmsheet{gap:10px}
+.farmrow{display:flex;align-items:center;gap:10px;width:100%;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:8px 12px;margin-bottom:6px;text-align:start}
+.farmrow.on{border-color:#840000}.farmrow small{display:block;font-size:11.5px;color:#6b706a}
+.osm-attr{font-size:10px;color:#6b706a;text-align:end;padding:2px 8px}
+.x3x{width:32px;height:32px;border-radius:50%;border:0;background:#e8e8bc;font-weight:900;color:#516d77}
+@media (prefers-reduced-motion:reduce){.sat-orbit,.beam,.envsteps li.cur .dot{animation:none}}

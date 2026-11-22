@@ -1,0 +1,12 @@
+{
+  "name": "finalsaleh",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Field Shift – farmer app (front end)",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  }
+}

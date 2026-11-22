@@ -1,0 +1,16 @@
+# Network Notes - Field Shift QA Run
+Date: 2026-11-15T08:31:38.827Z
+Live NASA requests made: 17
+
+## Remote Hosts Contacted:
+- fonts.googleapis.com
+- cdnjs.cloudflare.com
+- fonts.gstatic.com
+- nominatim.openstreetmap.org
+- rest.isric.org
+- api.open-meteo.com
+- power.larc.nasa.gov
+- ipapi.co
+
+## CORS / Failed Requests:
+[TC-009] https://ipapi.co/json/ failed with net::ERR_FAILED

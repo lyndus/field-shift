@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Field Shift – build wilaya NASA data</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;color:#3a2a18;background:#fffbea}
+h1{font-size:22px}button{font:inherit;font-weight:700;padding:10px 18px;border:0;border-radius:14px;background:#5cbf3f;color:#fff;cursor:pointer;margin-right:8px}
+button:disabled{background:#cdb47d}table{border-collapse:collapse;width:100%;font-size:13px;margin-top:14px}td,th{border-bottom:1px solid #f0d9a0;padding:4px 6px;text-align:left}
+.ok{color:#2a6b13}.err{color:#a3271a}.run{color:#1f78ab}#bar{height:10px;background:#fbe9bf;border-radius:9px;margin-top:12px}#bar i{display:block;height:100%;width:0;background:#6cc04a;border-radius:9px}
+</style></head><body>
+<h1>Build NASA POWER data for the 58 wilayas</h1>
+<p>Run once on a computer with internet. It downloads 30 Sep–Aug seasons (1995-96 to 2024-25) of daily NASA POWER data for each wilaya seat,
+runs the same cleaning and indicator pipeline as the game (<code>nasa_direct.js</code>), adds SoilGrids soil and Copernicus slope when those services answer,
+and gives you <b>wilayas_data.js</b>. Put that file in <code>data/</code> (replace the empty one). Already-built wilayas are kept on this computer, so you can stop and resume.</p>
+<button id="go">Start</button><button id="dl" disabled>Download wilayas_data.js</button> <span id="sum"></span>
+<div id="bar"><i></i></div>
+<table><thead><tr><th>#</th><th>Wilaya</th><th>Status</th><th>Oct–May rain</th><th>Seasons</th><th>Soil</th></tr></thead><tbody id="tb"></tbody></table>
+<script src="../wilayas.js"></script>
+<script src="../nasa_direct.js"></script>
+<script>
+const W = window.FS_WILAYA_LIST, N = window.FS_NASA, OUT = {}, tb = document.getElementById("tb");
+W.forEach((w) => tb.insertAdjacentHTML("beforeend", `<tr id="r${w[0]}"><td>${w[0]}</td><td>${w[1]} · ${w[2]}</td><td class="st">waiting</td><td class="ra"></td><td class="se"></td><td class="so"></td></tr>`));
+const row = (c, k, v, cls) => { const td = document.querySelector(`#r${c} .${k}`); td.textContent = v; if (cls) td.className = k + " " + cls; };
+function upd() { const n = Object.keys(OUT).length; document.getElementById("sum").textContent = `${n} / ${W.length} built`; document.querySelector("#bar i").style.width = (100 * n / W.length) + "%"; document.getElementById("dl").disabled = !n; }
+async function one(w) {
+  row(w[0], "st", "downloading…", "run");
+  for (let a = 0; a < 3; a++) {
+    try {
+      const pkg = await N.build(w[3], w[4], { name: w[1] });
+      const L = pkg.engine_location;
+      OUT[w[0]] = { ...L, id: "wil_" + w[0], name: w[1], name_ar: w[2], built_at: pkg.fetched_at, caveats: pkg.caveats, cell: pkg.cell.id };
+      row(w[0], "st", pkg.cache.hit ? "ok (saved)" : "ok", "ok"); row(w[0], "ra", L.summary.rain_mean + " mm"); row(w[0], "se", L.season_labels.length); row(w[0], "so", (L.soil && L.soil.texture) || "n/a");
+      upd(); return;
+    } catch (e) { row(w[0], "st", "retry: " + e.message, "err"); await new Promise((r) => setTimeout(r, 5000 * (a + 1))); }
+  }
+  row(w[0], "st", "failed – press Start again later", "err");
+}
+document.getElementById("go").onclick = async () => {
+  document.getElementById("go").disabled = true;
+  const todo = W.filter((w) => !OUT[w[0]]); let i = 0;
+  const worker = async () => { while (i < todo.length) { const w = todo[i++]; await one(w); } };
+  await Promise.all([worker(), worker(), worker()]); // 3 at a time: polite to NASA POWER
+  document.getElementById("go").disabled = false;
+};
+document.getElementById("dl").onclick = () => {
+  const txt = `/* NASA POWER profiles per wilaya seat (Field Shift). Built ${new Date().toISOString()} with tools/build_wilayas_data.html.\n   Source: NASA LaRC POWER daily (AG), ISRIC SoilGrids v2.0, Copernicus DEM via Open-Meteo. Used only when the farm's own point can't be fetched. */\nwindow.FS_WILAYA_DATA = ${JSON.stringify(OUT)};\n`;
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([txt], { type: "text/javascript" })); a.download = "wilayas_data.js"; a.click();
+};
+</script></body></html>

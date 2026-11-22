@@ -1,0 +1,44 @@
+/* NASA report: simple view + rotation comparison (app style, original palette) */
+.rep-tabs{display:flex;gap:6px;background:var(--card,#fbfbef);border:1.5px solid var(--line,#d6d6a8);border-radius:16px;padding:4px;position:sticky;top:0;z-index:5}
+.rep-tab{flex:1;border:0;background:transparent;border-radius:12px;padding:9px 4px;font:inherit;font-size:12.5px;font-weight:800;color:var(--mute,#4f5a5e);cursor:pointer;line-height:1.2}
+.rep-tab.on{background:var(--orch,#840000);color:#fff;box-shadow:0 3px 8px -3px rgba(132,0,0,.5)}
+.rep-body{display:flex;flex-direction:column;gap:10px;animation:rsIn .3s ease backwards}
+@keyframes rsIn{from{opacity:0;transform:translateY(6px)}}
+.sv-say{background:var(--core,#e8e8bc);border-radius:16px;padding:11px 13px;font-size:14px;line-height:1.55;font-weight:600}
+.sv-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media (max-width:360px){.sv-grid{grid-template-columns:1fr}}
+.sv-card{background:var(--card,#fbfbef);border:1.5px solid var(--line,#d6d6a8);border-radius:16px;padding:10px 11px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
+.sv-card::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:5px}
+.sv-card.green::before{background:#5f8f2e}.sv-card.amber::before{background:#d9a520}.sv-card.red::before{background:#b8423a}
+.sv-top{display:flex;align-items:center;gap:6px}.sv-top b{flex:1;font-size:12.5px;line-height:1.25}
+.sv-ico{font-size:18px}
+.sv-dot{width:11px;height:11px;border-radius:50%;flex:none}
+.sv-card.green .sv-dot{background:#5f8f2e}.sv-card.amber .sv-dot{background:#d9a520}.sv-card.red .sv-dot{background:#b8423a}
+.sv-big{font-size:21px;font-weight:800;color:var(--ink,#2b2a20)}
+.sv-card p{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink,#2b2a20)}
+.sv-card small{font-size:11.5px;color:var(--mute,#4f5a5e);line-height:1.4}
+.rs-intro{font-size:13.5px;line-height:1.55;color:var(--mute,#4f5a5e)}
+.rs-card{background:var(--card,#fbfbef);border:1.5px solid var(--line,#d6d6a8);border-radius:18px;padding:10px 11px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s}
+.rs-card.best{border:2.5px solid #5f8f2e;box-shadow:0 0 0 4px rgba(95,143,46,.15)}
+.rs-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rs-head>b{font-size:15px}
+.rs-score{margin-inline-start:auto;font-size:13px;color:var(--mute,#4f5a5e)}.rs-score b{font-size:22px;color:var(--orch,#840000)}
+.rs-card.best .rs-score b{color:#5f8f2e}
+.rs-crown{width:100%;font-size:12.5px;font-weight:800;color:#5f8f2e}
+.rs-slots{display:flex;align-items:center;gap:4px}
+.rs-arrow{color:var(--mute,#4f5a5e);font-weight:800}
+.rs-slot{flex:1;min-width:0;border:1.5px dashed var(--line2,#c9c99a);background:#fff;border-radius:14px;padding:6px 3px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px}
+.rs-slot small{font-size:10.5px;color:var(--mute,#4f5a5e)}.rs-slot span{font-size:20px}.rs-slot b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rs-slot.on{border-style:solid;border-color:var(--orch,#840000);background:var(--core,#e8e8bc)}
+.rs-pick{display:flex;flex-wrap:wrap;gap:6px}
+.rs-opt{border:1.5px solid var(--line,#d6d6a8);background:#fff;border-radius:999px;padding:6px 10px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.rs-opt.on{background:var(--apple,#9ca047);border-color:var(--apple,#9ca047);color:#fff}
+.rs-bars{display:flex;flex-direction:column;gap:4px}
+.rs-bar{display:grid;grid-template-columns:96px 1fr 22px;align-items:center;gap:6px;font-size:11.5px}
+.rs-bar i{height:8px;border-radius:5px;background:#e9e9cf;overflow:hidden}
+.rs-bar em{display:block;height:100%;border-radius:5px;background:var(--jean,#516d77);animation:rsGrow .7s ease-out backwards}
+.rs-card.best .rs-bar em{background:#5f8f2e}
+.rs-bar b{text-align:end}
+@keyframes rsGrow{from{width:0!important}}
+.rs-why{background:#eef3d6;border:1.5px solid #b5b862;border-radius:16px;padding:11px 13px;font-size:13.5px;line-height:1.6}
+.rs-note{font-size:11.5px;color:var(--mute,#4f5a5e);line-height:1.5}
+.rep-body{padding-bottom:78px}

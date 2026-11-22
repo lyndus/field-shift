@@ -1,0 +1,9 @@
+{
+  "note": "Static fallback used when live APIs are down. Only contains what was verified by hand; everything else is null = 'not enough information'.",
+  "cells": [
+    {"cell_id": "35.25_-0.75", "lat": 35.19, "lon": -0.64, "name": "Sidi Bel Abbes",
+     "climate": null, "soil": null,
+     "gaez": {"sxHr_whe": {"value": 3321, "verified": true}, "sxHr_brl": {"value": 5540, "verified": true}},
+     "caveats": ["POWER cell is ~50 km, not a field measurement", "Rain trend not statistically significant (p=0.37)"]}
+  ]
+}
